@@ -15,6 +15,11 @@
 		57EE6C371F6A5B82003DE383 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C361F6A5B82003DE383 /* Settings.swift */; };
 		57EE6C391F6A5C7C003DE383 /* RestApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C381F6A5C7C003DE383 /* RestApiService.swift */; };
 		57EE6C3C1F6A5EB8003DE383 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C3B1F6A5EB8003DE383 /* FeedViewController.swift */; };
+		C4E3F2811F6A815C005B4665 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F2801F6A815C005B4665 /* FeedItem.swift */; };
+		C4E3F2841F6A849E005B4665 /* ErrorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F2831F6A849E005B4665 /* ErrorUtils.swift */; };
+		C4E3F2861F6A84E8005B4665 /* FeedItem+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F2851F6A84E8005B4665 /* FeedItem+JSON.swift */; };
+		C4E3F2881F6A8670005B4665 /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F2871F6A8670005B4665 /* AlertUtils.swift */; };
+		C4E3F28E1F6A8DA7005B4665 /* NewInTheatresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F28D1F6A8DA7005B4665 /* NewInTheatresViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		57EE6C361F6A5B82003DE383 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		57EE6C381F6A5C7C003DE383 /* RestApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiService.swift; sourceTree = "<group>"; };
 		57EE6C3B1F6A5EB8003DE383 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		C4E3F2801F6A815C005B4665 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItem.swift; path = Model/FeedItem.swift; sourceTree = "<group>"; };
+		C4E3F2831F6A849E005B4665 /* ErrorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorUtils.swift; path = Utils/ErrorUtils.swift; sourceTree = "<group>"; };
+		C4E3F2851F6A84E8005B4665 /* FeedItem+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedItem+JSON.swift"; sourceTree = "<group>"; };
+		C4E3F2871F6A8670005B4665 /* AlertUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertUtils.swift; path = Utils/AlertUtils.swift; sourceTree = "<group>"; };
+		C4E3F28D1F6A8DA7005B4665 /* NewInTheatresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewInTheatresViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,8 @@
 		57EE6C0B1F6A52EB003DE383 /* matterly */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3F2821F6A846A005B4665 /* Utils */,
+				C4E3F27F1F6A8124005B4665 /* Model */,
 				57EE6C1E1F6A5781003DE383 /* Resources */,
 				57EE6C351F6A57A9003DE383 /* Services */,
 				57EE6C2B1F6A578C003DE383 /* UI */,
@@ -79,6 +91,7 @@
 		57EE6C2B1F6A578C003DE383 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3F28C1F6A8D8C005B4665 /* NewInTheatres */,
 				57EE6C3A1F6A5E9E003DE383 /* Feed */,
 				57EE6C301F6A578C003DE383 /* Main */,
 				57EE6C2C1F6A578C003DE383 /* LaunchScreen.storyboard */,
@@ -99,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				57EE6C381F6A5C7C003DE383 /* RestApiService.swift */,
+				C4E3F2851F6A84E8005B4665 /* FeedItem+JSON.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -109,6 +123,31 @@
 				57EE6C3B1F6A5EB8003DE383 /* FeedViewController.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		C4E3F27F1F6A8124005B4665 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3F2801F6A815C005B4665 /* FeedItem.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C4E3F2821F6A846A005B4665 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3F2831F6A849E005B4665 /* ErrorUtils.swift */,
+				C4E3F2871F6A8670005B4665 /* AlertUtils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		C4E3F28C1F6A8D8C005B4665 /* NewInTheatres */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3F28D1F6A8DA7005B4665 /* NewInTheatresViewController.swift */,
+			);
+			path = NewInTheatres;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,10 +223,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E3F28E1F6A8DA7005B4665 /* NewInTheatresViewController.swift in Sources */,
 				57EE6C391F6A5C7C003DE383 /* RestApiService.swift in Sources */,
 				57EE6C371F6A5B82003DE383 /* Settings.swift in Sources */,
+				C4E3F2811F6A815C005B4665 /* FeedItem.swift in Sources */,
 				57EE6C3C1F6A5EB8003DE383 /* FeedViewController.swift in Sources */,
 				57EE6C341F6A578C003DE383 /* MainViewController.swift in Sources */,
+				C4E3F2881F6A8670005B4665 /* AlertUtils.swift in Sources */,
+				C4E3F2841F6A849E005B4665 /* ErrorUtils.swift in Sources */,
+				C4E3F2861F6A84E8005B4665 /* FeedItem+JSON.swift in Sources */,
 				57EE6C0D1F6A52EB003DE383 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

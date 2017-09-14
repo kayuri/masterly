@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qfu-FG-n7J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NZv-NV-WDw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,23 +18,42 @@
             </objects>
             <point key="canvasLocation" x="41" y="68"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Uub-Up-IRv">
+        <!--New In Theatres View Controller-->
+        <scene sceneID="28x-V9-ewb">
             <objects>
-                <viewController id="EM6-Hx-AAM" sceneMemberID="viewController">
+                <viewController id="NZv-NV-WDw" customClass="NewInTheatresViewController" customModule="matterly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dZn-G8-n95"/>
-                        <viewControllerLayoutGuide type="bottom" id="SjA-bJ-ukz"/>
+                        <viewControllerLayoutGuide type="top" id="EbE-vJ-aoK"/>
+                        <viewControllerLayoutGuide type="bottom" id="mhN-Ss-pQu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Gi0-SH-sRu">
+                    <view key="view" contentMode="scaleToFill" id="4Tl-fn-AHc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J4q-Rs-fln">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="NZv-NV-WDw" id="sOd-UM-s0j"/>
+                                    <outlet property="delegate" destination="NZv-NV-WDw" id="cmA-yn-bv0"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="J4q-Rs-fln" secondAttribute="trailing" id="DPm-ir-MjH"/>
+                            <constraint firstItem="mhN-Ss-pQu" firstAttribute="top" secondItem="J4q-Rs-fln" secondAttribute="bottom" id="T1U-lN-odw"/>
+                            <constraint firstItem="J4q-Rs-fln" firstAttribute="leading" secondItem="4Tl-fn-AHc" secondAttribute="leadingMargin" id="Tk1-1T-XaA"/>
+                            <constraint firstItem="J4q-Rs-fln" firstAttribute="top" secondItem="EbE-vJ-aoK" secondAttribute="bottom" id="egW-Gl-blK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="J4q-Rs-fln" id="2GN-lM-EeZ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="no7-tR-dQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YPJ-ag-vjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="71"/>
+            <point key="canvasLocation" x="692" y="67.916041979010501"/>
         </scene>
     </scenes>
 </document>
