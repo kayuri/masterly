@@ -20,30 +20,21 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
         return items.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "feed_item_cell", for: indexPath) as! FeedItemCell
         
         let index = indexPath.row
         let item = items[index]
         cell.titleLabel?.text = item.title
-        
         cell.imageView?.image = .none
-        if let image = imageCacheService.getImage(name: item.posterPath) {
-            cell.imageView?.image = image
-        } else {
-        
-        imageService.fetchImage(item.posterPath, { [weak cell] (data, _, error) in
+        imageService.fetchImage(item.posterPath, { [weak cell] (image, error) in
             if let error = error {
                 print(error)
             }
-            let image = UIImage(data: data!)!
-            imageCacheService.cache(name: item.posterPath, image: image)
-            
             DispatchQueue.main.async {
                 cell?.imageView?.image = image
-            }
-        })
-        }
+            }})
         
         return cell
     }

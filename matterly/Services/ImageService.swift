@@ -11,16 +11,28 @@ import UIKit
 let imageService = ImageService()
 
 class ImageService {
-
-
+    
+    let session = URLSession(configuration: .default)
+    
     fileprivate init() {
     }
     
-    func fetchImage(_ imagePath: String, _ completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func fetchImage(_ imagePath: String, _ completion: @escaping (UIImage?, Error?) -> Void) {
         if let imageUrl = URL(string: "\(imageEndpoint)\(imagePath)") {
-            let session = URLSession(configuration: .default)
+            if let image = imageCacheService.getImage(name: imagePath) {
+                completion(image, .none)
+                return
+            }
             session.dataTask(with: imageUrl,
-                             completionHandler: completion).resume()
+                             completionHandler: { (data, _, error) in
+                                if let error = error {
+                                    completion(.none, error)
+                                }
+                                if let image = UIImage(data: data!) {
+                                    imageCacheService.cache(name: imagePath, image: image)
+                                    completion(image, error)
+                                }
+            }).resume()
         }
     }
 }
