@@ -13,6 +13,6 @@ extension NSError {
     static func message(_ message: String, code: Int) -> NSError {
         let userInfo = [NSLocalizedDescriptionKey: message]
         
-        return NSError(domain: "com.exyte.blast", code: code, userInfo: userInfo)
+        return NSError(domain: "com.exyte.matterly", code: code, userInfo: userInfo)
     }
 }

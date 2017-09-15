@@ -28,19 +28,19 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
         cell.titleLabel?.text = item.title
         
         cell.imageView?.image = .none
-        if let imageUrl = URL(string: "\(imageEndpoint)\(item.posterPath)") {
-            let session = URLSession(configuration: .default)
-            session.dataTask(with: imageUrl,
-                             completionHandler: { [weak cell] (data, _, error) in
-                                if let error = error {
-                                    print(error)
-                                }
-                                
-                                let image = UIImage(data: data!)!
-                                cell?.imageView?.image = image
-            }).resume()
-        }
+        if let image = imageCacheService.getImage(name: item.posterPath) {
+            cell.imageView?.image = image
+        } else {
         
+        imageService.fetchImage(item.posterPath, { [weak cell] (data, _, error) in
+            if let error = error {
+                print(error)
+            }
+            let image = UIImage(data: data!)!
+            imageCacheService.cache(name: item.posterPath, image: image)
+            cell?.imageView?.image = image
+        })
+        }
         
         return cell
     }
