@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNx-CA-8E9">
-                                <rect key="frame" x="8" y="20" width="88.5" height="32"/>
+				<rect key="frame" x="8" y="28" width="88.5" height="32"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jrx-cY-BIs">
-                                <rect key="frame" x="2" y="69" width="373" height="598"/>
+				<rect key="frame" x="2" y="77" width="373" height="590"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feed_type_cell" id="U2E-Ew-kQQ" customClass="MainMenuCell" customModule="matterly" customModuleProvider="target">
@@ -133,8 +133,7 @@
                         <constraints>
                             <constraint firstItem="DNx-CA-8E9" firstAttribute="leading" secondItem="O59-Qx-Img" secondAttribute="leading" constant="8" id="0N2-7y-6cX"/>
                             <constraint firstAttribute="trailing" secondItem="Jrx-cY-BIs" secondAttribute="trailing" id="JM4-2K-Bg6"/>
-                            <constraint firstItem="DNx-CA-8E9" firstAttribute="top" secondItem="fwZ-Lh-wa7" secondAttribute="bottom" id="N8l-ss-36R"/>
-                            <constraint firstItem="DNx-CA-8E9" firstAttribute="leading" secondItem="O59-Qx-Img" secondAttribute="leadingMargin" id="Zam-TS-cR5"/>
+			    <constraint firstItem="DNx-CA-8E9" firstAttribute="top" secondItem="fwZ-Lh-wa7" secondAttribute="bottom" constant="8" id="N8l-ss-36R"/>
                             <constraint firstItem="yyh-IV-eyW" firstAttribute="top" secondItem="Jrx-cY-BIs" secondAttribute="bottom" id="hN8-pk-gQc"/>
                             <constraint firstItem="Jrx-cY-BIs" firstAttribute="leading" secondItem="O59-Qx-Img" secondAttribute="leading" constant="2" id="m6c-SY-c4a"/>
                             <constraint firstItem="Jrx-cY-BIs" firstAttribute="top" secondItem="DNx-CA-8E9" secondAttribute="bottom" constant="17" id="nwa-RZ-IL5"/>
