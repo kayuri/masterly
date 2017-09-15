@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		573022871F6BAF4B008D7978 /* MainMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573022861F6BAF4B008D7978 /* MainMenuCell.swift */; };
+		573022891F6BB395008D7978 /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573022881F6BB395008D7978 /* FeedItemCell.swift */; };
 		57EE6C0D1F6A52EB003DE383 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C0C1F6A52EB003DE383 /* AppDelegate.swift */; };
 		57EE6C271F6A5781003DE383 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57EE6C1F1F6A5781003DE383 /* Assets.xcassets */; };
 		57EE6C321F6A578C003DE383 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57EE6C2C1F6A578C003DE383 /* LaunchScreen.storyboard */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		573022861F6BAF4B008D7978 /* MainMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuCell.swift; sourceTree = "<group>"; };
+		573022881F6BB395008D7978 /* FeedItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 		57EE6C091F6A52EB003DE383 /* matterly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = matterly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE6C0C1F6A52EB003DE383 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57EE6C1F1F6A5781003DE383 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				57EE6C311F6A578C003DE383 /* MainViewController.swift */,
+				573022861F6BAF4B008D7978 /* MainMenuCell.swift */,
+				573022881F6BB395008D7978 /* FeedItemCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -229,7 +235,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				573022891F6BB395008D7978 /* FeedItemCell.swift in Sources */,
 				C4E3F28E1F6A8DA7005B4665 /* NewInTheatresViewController.swift in Sources */,
+				573022871F6BAF4B008D7978 /* MainMenuCell.swift in Sources */,
 				57EE6C391F6A5C7C003DE383 /* RestApiService.swift in Sources */,
 				57EE6C371F6A5B82003DE383 /* Settings.swift in Sources */,
 				C4E3F2811F6A815C005B4665 /* FeedItem.swift in Sources */,
@@ -367,6 +375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FZXCM5CJ7P;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exyte.matterly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -382,6 +391,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.exyte.matterly;
 				PRODUCT_NAME = "$(TARGET_NAME)";

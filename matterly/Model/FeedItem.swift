@@ -8,12 +8,8 @@
 
 import Foundation
 
-class FeedItem {
+struct FeedItem {
     let title: String
     let posterPath: String
-    
-    init(title: String, posterPath: String) {
-        self.title = title
-        self.posterPath = posterPath
-    }
+
 }
