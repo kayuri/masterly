@@ -17,7 +17,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.automaticallyAdjustsScrollViewInsets = false
         fetchFeed()
     }
     

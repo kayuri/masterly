@@ -53,7 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Az6-ol-m4W">
-                                                    <rect key="frame" x="0.0" y="41" width="375" height="139"/>
+                                                    <rect key="frame" x="0.0" y="41" width="375" height="209"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="XZt-vD-G9w">
                                                         <size key="itemSize" width="300" height="100"/>
@@ -63,7 +63,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="feed_item_cell" id="2Oq-RQ-U2d" customClass="FeedItemCell" customModule="matterly" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="19.5" width="300" height="100"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
@@ -142,6 +142,9 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="Jrx-cY-BIs" id="4NL-lK-eLD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWF-1S-fRb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
