@@ -58,9 +58,19 @@ class RestApiService {
             completion(.none, .none)
             return
         }
+        guard let endpoint = TMDB(build: {
+            $0.baseURL = apiEndpoint
+            $0.sortBy = "vote_average.desc"
+            $0.voteCountGte = 500
+            $0.page = page
+            $0.year = 2017
+            $0.apiKey = apiKey
+        }).path() else {
+            completion(.none, .none)
+            return
+        }
         ratedPageInProgress = page
-        let highestRatedThisYearEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&vote_count.gte=500&page=\(String(describing: page))&include_video=false&include_adult=false&sort_by=vote_average.desc&year=2017&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
-        fetch(highestRatedThisYearEndpoint, completion)
+        fetch(endpoint, completion)
         ratedPageInProgress = .none
     }
     
@@ -69,20 +79,41 @@ class RestApiService {
             completion(.none, .none)
             return
         }
+        guard let endpoint = TMDB(build: {
+            $0.baseURL = apiEndpoint
+            $0.sortBy = TMDBSortBy.PopularityDesc.rawValue
+            $0.page = page
+            $0.year = 2017
+            $0.apiKey = apiKey
+        }).path() else {
+            completion(.none, .none)
+            return
+        }
         popularPageInProgress = page
-        let popularEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=\(String(describing: page))&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54&"
-        fetch(popularEndpoint, completion)
+        fetch(endpoint, completion)
         popularPageInProgress = .none
     }
     
+  
     func fetchNewInTheatres(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
         if let p = theatresPageInProgress, p == page {
             completion(.none, .none)
             return
         }
-        popularPageInProgress = page
-        let newInTheatresEndpoint: String = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=\(String(describing: page))&primary_release_date.gte=2017-09-11&primary_release_date.lte=2017-09-16&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
-        fetch(newInTheatresEndpoint, completion)
-        popularPageInProgress = .none
+        guard let endpoint = TMDB(build: {
+            $0.baseURL = apiEndpoint
+            $0.sortBy = TMDBSortBy.PopularityDesc.rawValue
+            $0.page = page
+            $0.primaryReleaseDateGte = monthAgo()
+            $0.primaryReleaseDateLte = today()
+            $0.year = 2017
+            $0.apiKey = apiKey
+        }).path() else {
+            completion(.none, .none)
+            return
+        }
+        theatresPageInProgress = page
+        fetch(endpoint, completion)
+        theatresPageInProgress = .none
     }
 }

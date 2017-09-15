@@ -17,6 +17,8 @@
 		57EE6C341F6A578C003DE383 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C311F6A578C003DE383 /* MainViewController.swift */; };
 		57EE6C371F6A5B82003DE383 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C361F6A5B82003DE383 /* Settings.swift */; };
 		57EE6C391F6A5C7C003DE383 /* RestApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6C381F6A5C7C003DE383 /* RestApiService.swift */; };
+		C42150F31F6BFA74007AD81D /* TMDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42150F21F6BFA74007AD81D /* TMDBAPI.swift */; };
+		C42150F51F6C04B3007AD81D /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42150F41F6C04B3007AD81D /* DateUtils.swift */; };
 		C4B009AC1F6BD0BE00022672 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B009AB1F6BD0BE00022672 /* ImageCacheService.swift */; };
 		C4B009AE1F6BD21400022672 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B009AD1F6BD21400022672 /* ImageService.swift */; };
 		C4E3F2811F6A815C005B4665 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E3F2801F6A815C005B4665 /* FeedItem.swift */; };
@@ -37,6 +39,8 @@
 		57EE6C311F6A578C003DE383 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57EE6C361F6A5B82003DE383 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		57EE6C381F6A5C7C003DE383 /* RestApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiService.swift; sourceTree = "<group>"; };
+		C42150F21F6BFA74007AD81D /* TMDBAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TMDBAPI.swift; path = Utils/TMDBAPI.swift; sourceTree = "<group>"; };
+		C42150F41F6C04B3007AD81D /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		C4B009AB1F6BD0BE00022672 /* ImageCacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		C4B009AD1F6BD21400022672 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		C4E3F2801F6A815C005B4665 /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedItem.swift; path = Model/FeedItem.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				5730228A1F6BC02F008D7978 /* ViewBorders.swift */,
 				C4E3F2831F6A849E005B4665 /* ErrorUtils.swift */,
 				C4E3F2871F6A8670005B4665 /* AlertUtils.swift */,
+				C42150F21F6BFA74007AD81D /* TMDBAPI.swift */,
+				C42150F41F6C04B3007AD81D /* DateUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -221,7 +227,9 @@
 				C4B009AC1F6BD0BE00022672 /* ImageCacheService.swift in Sources */,
 				57EE6C391F6A5C7C003DE383 /* RestApiService.swift in Sources */,
 				57EE6C371F6A5B82003DE383 /* Settings.swift in Sources */,
+				C42150F31F6BFA74007AD81D /* TMDBAPI.swift in Sources */,
 				C4E3F2811F6A815C005B4665 /* FeedItem.swift in Sources */,
+				C42150F51F6C04B3007AD81D /* DateUtils.swift in Sources */,
 				57EE6C341F6A578C003DE383 /* MainViewController.swift in Sources */,
 				C4E3F2881F6A8670005B4665 /* AlertUtils.swift in Sources */,
 				C4B009AE1F6BD21400022672 /* ImageService.swift in Sources */,
