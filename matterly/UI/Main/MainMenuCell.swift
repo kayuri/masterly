@@ -48,6 +48,6 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.bounds.width, height: 200.0)
+        return CGSize(width: self.bounds.width, height: 205.0)
     }
 }
