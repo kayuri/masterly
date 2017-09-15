@@ -3,21 +3,13 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView?
-    
-    private var theatreItems: [FeedItem] = []
-    private var popularItems: [FeedItem] = []
-    private var ratedItems: [FeedItem] = []
-    
+        
     private let titles = [
         "New In Theatres",
         "Popular",
         "Highest Rated This Year"
     ]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
     
     // MARK: - UITableViewDataSource
     
@@ -37,26 +29,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         switch index {
         case 0:
-            if cell.items.count == 0 {
-                loadFeedTheatre(cell)
-            }
-            cell.onLoadNext = { [weak cell, weak self] in
-                self?.loadFeedTheatre(cell)
-            }
+            setupCell(cell: cell, fetcher: loadFeedTheatre)
         case 1:
-            if cell.items.count == 0 {
-                loadFeedPopular(cell)
-            }
-            cell.onLoadNext = { [weak cell, weak self] in
-                self?.loadFeedPopular(cell)
-            }
+            setupCell(cell: cell, fetcher: loadFeedPopular)
         case 2:
-            if cell.items.count == 0 {
-                loadFeedRated(cell)
-            }
-            cell.onLoadNext = { [weak cell, weak self] in
-                self?.loadFeedRated(cell)
-            }
+            setupCell(cell: cell, fetcher: loadFeedRated)
         default:
             break
         }
@@ -64,14 +41,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return .none
+    private func setupCell(cell: MainMenuCell, fetcher: @escaping (MainMenuCell?) -> Void ) {
+        if cell.items.count == 0 {
+            fetcher(cell)
+        }
+        
+        cell.onLoadNext = { [weak cell] in
+            fetcher(cell)
+        }
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return .none
-    }
-    
     
     // MARK: - Feed fetching
     
@@ -79,15 +57,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let count = cell?.items.count else {
             return
         }
+        
         let page = 1 + count / defaultPageSize
         restApiService.fetchNewInTheatres(page: page, completion: { [weak self] (items, error) in
             if let error = error {
                 showErrorAlert(error: error, parent: self)
             }
+            
             guard let items = items else {
                 return
             }
-            cell?.items.append(contentsOf: items)
+            
+            feedStorageService.theatreItems.append(contentsOf: items)
+            cell?.items = feedStorageService.theatreItems
         })
     }
     
@@ -95,15 +77,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let count = cell?.items.count else {
             return
         }
+        
         let page = 1 + count / defaultPageSize
         restApiService.fetchPopular(page: page, completion: { [weak self] (items, error) in
             if let error = error {
                 showErrorAlert(error: error, parent: self)
             }
+            
             guard let items = items else {
                 return
             }
-            cell?.items.append(contentsOf: items)
+            
+            feedStorageService.popularItems.append(contentsOf: items)
+            cell?.items = feedStorageService.popularItems
         })
     }
 
@@ -111,15 +97,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let count = cell?.items.count else {
             return
         }
+        
         let page = 1 + count / defaultPageSize
         restApiService.fetchHighestRatedThisYear(page: page, completion: { [weak self] (items, error) in
             if let error = error {
                 showErrorAlert(error: error, parent: self)
             }
+            
             guard let items = items else {
                 return
             }
-            cell?.items.append(contentsOf: items)
+            
+            feedStorageService.ratedItems.append(contentsOf: items)
+            cell?.items = feedStorageService.ratedItems
         })
     }
 

@@ -40,6 +40,7 @@ class RestApiService {
                     completion(.none, NSError.message("Could not get results from JSON", code: 0))
                     return
                 }
+                
                 let items = results.flatMap{ FeedItem.fromJson( $0 ) }
                 completion(items, .none)
             } catch  {
@@ -50,14 +51,12 @@ class RestApiService {
     }
     
     var ratedPageInProgress:Int?
-    var theatresPageInProgress:Int?
-    var popularPageInProgress:Int?
-    
     func fetchHighestRatedThisYear(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        if let p = ratedPageInProgress, p == page {
+        if let activePage = ratedPageInProgress, activePage == page {
             completion(.none, .none)
             return
         }
+        
         guard let endpoint = TMDB(build: {
             $0.baseURL = apiEndpoint
             $0.sortBy = "vote_average.desc"
@@ -69,16 +68,19 @@ class RestApiService {
             completion(.none, .none)
             return
         }
+        
         ratedPageInProgress = page
         fetch(endpoint, completion)
         ratedPageInProgress = .none
     }
     
+    var popularPageInProgress:Int?
     func fetchPopular(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        if let p = ratedPageInProgress, p == page {
+        if let activePage = ratedPageInProgress, activePage == page {
             completion(.none, .none)
             return
         }
+        
         guard let endpoint = TMDB(build: {
             $0.baseURL = apiEndpoint
             $0.sortBy = TMDBSortBy.PopularityDesc.rawValue
@@ -89,17 +91,19 @@ class RestApiService {
             completion(.none, .none)
             return
         }
+        
         popularPageInProgress = page
         fetch(endpoint, completion)
         popularPageInProgress = .none
     }
     
-  
+    var theatresPageInProgress:Int?
     func fetchNewInTheatres(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        if let p = theatresPageInProgress, p == page {
+        if let activePage = theatresPageInProgress, activePage == page {
             completion(.none, .none)
             return
         }
+        
         guard let endpoint = TMDB(build: {
             $0.baseURL = apiEndpoint
             $0.sortBy = TMDBSortBy.PopularityDesc.rawValue
@@ -112,6 +116,7 @@ class RestApiService {
             completion(.none, .none)
             return
         }
+        
         theatresPageInProgress = page
         fetch(endpoint, completion)
         theatresPageInProgress = .none

@@ -6,7 +6,9 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
     
     var items: [FeedItem] = [] {
         didSet {
-            collectionView?.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView?.reloadData()
+            }
         }
     }
     
@@ -33,9 +35,10 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
         cell.imageView?.image = .none
         
         imageService.fetchImage(item.posterPath, { [weak cell] (image, error) in
-            if let error = error {
-                print(error)
+            if let _ = error {
+                return
             }
+            
             DispatchQueue.main.async {
                 cell?.imageView?.image = image
             }})
@@ -45,6 +48,7 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
         let index = indexPath.row
         if items.count - index < 5 {
             onLoadNext?()
@@ -55,6 +59,7 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: self.bounds.width, height: 205.0)
     }
 }
