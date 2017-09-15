@@ -10,6 +10,8 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    var onLoadNext: (()->Void)?
+    
     // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -26,8 +28,10 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
         
         let index = indexPath.row
         let item = items[index]
+        
         cell.titleLabel?.text = item.title
         cell.imageView?.image = .none
+        
         imageService.fetchImage(item.posterPath, { [weak cell] (image, error) in
             if let error = error {
                 print(error)
@@ -37,6 +41,15 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
             }})
         
         return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        if items.count - index < 5 {
+            onLoadNext?()
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView,

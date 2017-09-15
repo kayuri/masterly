@@ -49,18 +49,40 @@ class RestApiService {
         task.resume()
     }
     
-    func fetchHighestRatedThisYear(completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        let highestRatedThisYearEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&vote_count.gte=500&page=1&include_video=false&include_adult=false&sort_by=vote_average.desc&year=2017&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
+    var ratedPageInProgress:Int?
+    var theatresPageInProgress:Int?
+    var popularPageInProgress:Int?
+    
+    func fetchHighestRatedThisYear(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
+        if let p = ratedPageInProgress, p == page {
+            completion(.none, .none)
+            return
+        }
+        ratedPageInProgress = page
+        let highestRatedThisYearEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&vote_count.gte=500&page=\(String(describing: page))&include_video=false&include_adult=false&sort_by=vote_average.desc&year=2017&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
         fetch(highestRatedThisYearEndpoint, completion)
+        ratedPageInProgress = .none
     }
     
-    func fetchPopular(completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        let popularEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
+    func fetchPopular(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
+        if let p = ratedPageInProgress, p == page {
+            completion(.none, .none)
+            return
+        }
+        popularPageInProgress = page
+        let popularEndpoint = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=\(String(describing: page))&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54&"
         fetch(popularEndpoint, completion)
+        popularPageInProgress = .none
     }
     
-    func fetchNewInTheatres(completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
-        let newInTheatresEndpoint: String = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=1&primary_release_date.gte=2017-09-11&primary_release_date.lte=2017-09-16&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
+    func fetchNewInTheatres(page: Int, completion: @escaping ([FeedItem]?, NSError?) -> Void ) {
+        if let p = theatresPageInProgress, p == page {
+            completion(.none, .none)
+            return
+        }
+        popularPageInProgress = page
+        let newInTheatresEndpoint: String = "https://api.themoviedb.org/3/discover/movie?certification_country=US&page=\(String(describing: page))&primary_release_date.gte=2017-09-11&primary_release_date.lte=2017-09-16&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=84d0e365fa21f123b2aca3c2f16bbc54"
         fetch(newInTheatresEndpoint, completion)
+        popularPageInProgress = .none
     }
 }

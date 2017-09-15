@@ -16,8 +16,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchFeed()
+
     }
     
     // MARK: - UITableViewDataSource
@@ -38,11 +37,26 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         switch index {
         case 0:
-            cell.items = theatreItems
+            if cell.items.count == 0 {
+                loadFeedTheatre(cell)
+            }
+            cell.onLoadNext = { [weak cell, weak self] in
+                self?.loadFeedTheatre(cell)
+            }
         case 1:
-            cell.items = popularItems
+            if cell.items.count == 0 {
+                loadFeedPopular(cell)
+            }
+            cell.onLoadNext = { [weak cell, weak self] in
+                self?.loadFeedPopular(cell)
+            }
         case 2:
-            cell.items = ratedItems
+            if cell.items.count == 0 {
+                loadFeedRated(cell)
+            }
+            cell.onLoadNext = { [weak cell, weak self] in
+                self?.loadFeedRated(cell)
+            }
         default:
             break
         }
@@ -59,60 +73,55 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    
     // MARK: - Feed fetching
-    private func fetchFeed() {
-        restApiService.fetchNewInTheatres { [weak self] (items, error) in
+    
+    private func loadFeedTheatre(_ cell: MainMenuCell?) {
+        guard let count = cell?.items.count else {
+            return
+        }
+        let page = 1 + count / defaultPageSize
+        restApiService.fetchNewInTheatres(page: page, completion: { [weak self] (items, error) in
             if let error = error {
                 showErrorAlert(error: error, parent: self)
             }
-            
             guard let items = items else {
                 return
             }
-            
-            self?.theatreItems = items
-            let indexPath = IndexPath(row: 0, section: 0)
-            
-            DispatchQueue.main.async {
-                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
-            }
-        }
-        
-        restApiService.fetchPopular { [weak self] (items, error) in
-            if let error = error {
-                showErrorAlert(error: error, parent: self)
-            }
-            
-            guard let items = items else {
-                return
-            }
-            
-            self?.popularItems = items
-            let indexPath = IndexPath(row: 1, section: 0)
-            
-            DispatchQueue.main.async {
-                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
-            }
-        }
-        
-        restApiService.fetchHighestRatedThisYear { [weak self] (items, error) in
-            if let error = error {
-                showErrorAlert(error: error, parent: self)
-            }
-            
-            guard let items = items else {
-                return
-            }
-            
-            self?.ratedItems = items
-            let indexPath = IndexPath(row: 2, section: 0)
-
-            DispatchQueue.main.async {
-                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
-            }
-        }
+            cell?.items.append(contentsOf: items)
+        })
     }
     
+    private func loadFeedPopular(_ cell: MainMenuCell?) {
+        guard let count = cell?.items.count else {
+            return
+        }
+        let page = 1 + count / defaultPageSize
+        restApiService.fetchPopular(page: page, completion: { [weak self] (items, error) in
+            if let error = error {
+                showErrorAlert(error: error, parent: self)
+            }
+            guard let items = items else {
+                return
+            }
+            cell?.items.append(contentsOf: items)
+        })
+    }
+
+    private func loadFeedRated(_ cell: MainMenuCell?) {
+        guard let count = cell?.items.count else {
+            return
+        }
+        let page = 1 + count / defaultPageSize
+        restApiService.fetchHighestRatedThisYear(page: page, completion: { [weak self] (items, error) in
+            if let error = error {
+                showErrorAlert(error: error, parent: self)
+            }
+            guard let items = items else {
+                return
+            }
+            cell?.items.append(contentsOf: items)
+        })
+    }
+
 }
 
