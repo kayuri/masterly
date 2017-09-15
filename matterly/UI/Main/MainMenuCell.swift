@@ -1,6 +1,6 @@
 import UIKit
 
-class MainMenuCell: UITableViewCell, UICollectionViewDataSource {
+class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var collectionView: UICollectionView?
     
@@ -27,6 +27,7 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource {
         let item = items[index]
         cell.titleLabel?.text = item.title
         
+        cell.imageView?.image = .none
         if let imageUrl = URL(string: "\(imageEndpoint)\(item.posterPath)") {
             let session = URLSession(configuration: .default)
             session.dataTask(with: imageUrl,
@@ -42,5 +43,11 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource {
         
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.bounds.width, height: 200.0)
     }
 }
