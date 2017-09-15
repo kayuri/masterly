@@ -38,7 +38,10 @@ class MainMenuCell: UITableViewCell, UICollectionViewDataSource, UICollectionVie
             }
             let image = UIImage(data: data!)!
             imageCacheService.cache(name: item.posterPath, image: image)
-            cell?.imageView?.image = image
+            
+            DispatchQueue.main.async {
+                cell?.imageView?.image = image
+            }
         })
         }
         

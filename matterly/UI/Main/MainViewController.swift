@@ -74,7 +74,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self?.theatreItems = items
             let indexPath = IndexPath(row: 0, section: 0)
-            self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+            
+            DispatchQueue.main.async {
+                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+            }
         }
         
         restApiService.fetchPopular { [weak self] (items, error) in
@@ -88,7 +91,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self?.popularItems = items
             let indexPath = IndexPath(row: 1, section: 0)
-            self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+            
+            DispatchQueue.main.async {
+                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+            }
         }
         
         restApiService.fetchHighestRatedThisYear { [weak self] (items, error) in
@@ -102,7 +108,10 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self?.ratedItems = items
             let indexPath = IndexPath(row: 2, section: 0)
-            self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+
+            DispatchQueue.main.async {
+                self?.tableView?.reloadRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
